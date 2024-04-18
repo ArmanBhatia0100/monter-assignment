@@ -1,8 +1,18 @@
+import Link from "next/link";
+
 const Dialogbox = () => {
+  const reportDate = new Date(Date.UTC(2024, 4, 19, 3, 12, 0));
+  const dateOptions = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+
   return (
-    <div className="dialogbox container max-w-[90vw] mx-auto bg-white p-4 rounded-lg shadow">
+    <div className="dialogbox container max-w-[90vw] mx-auto bg-white rounded-lg shadow">
       {/* Title of the dialog box with with filter and close button */}
-      <header className="w-50 flex">
+      <header className="flex px-5">
         <h2 className="mx-auto font-medium">Recently Generated Reports</h2>
         {/* Close button */}
         <div className="action_container content-center">
@@ -41,9 +51,73 @@ const Dialogbox = () => {
           </button>
         </div>
       </header>
+
       {/* Main data imported in the table */}
-      <footer></footer>
+      <main>
+        <table className="table-fixed w-full border-separate border-spacing-y-2.5">
+          <thead>
+            <tr className="bg-slate-300 text-gray-700 text-left">
+              <th className="">Date</th>
+              <th className="w-max">Report Name</th>
+              <th className="text-center w-24">
+                Download
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{reportDate.toLocaleString("en-US", dateOptions)}</td>
+              <td>Report 1</td>
+              <td className="flex justify-center">
+                <Link href="">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="ml-auto w-5"
+                  >
+                    <path d="M12 1.5a.75.75 0 0 1 .75.75V7.5h-1.5V2.25A.75.75 0 0 1 12 1.5ZM11.25 7.5v5.69l-1.72-1.72a.75.75 0 0 0-1.06 1.06l3 3a.75.75 0 0 0 1.06 0l3-3a.75.75 0 1 0-1.06-1.06l-1.72 1.72V7.5h3.75a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h3.75Z" />
+                  </svg>
+                </Link>
+              </td>
+            </tr>
+            <tr>
+              <td>{reportDate.toLocaleString("en-US", dateOptions)}</td>
+              <td>Report 1</td>
+              <td className="flex justify-center">
+                <Link href="">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="ml-auto w-5"
+                  >
+                    <path d="M12 1.5a.75.75 0 0 1 .75.75V7.5h-1.5V2.25A.75.75 0 0 1 12 1.5ZM11.25 7.5v5.69l-1.72-1.72a.75.75 0 0 0-1.06 1.06l3 3a.75.75 0 0 0 1.06 0l3-3a.75.75 0 1 0-1.06-1.06l-1.72 1.72V7.5h3.75a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h3.75Z" />
+                  </svg>
+                </Link>
+              </td>
+            </tr>
+            <tr>
+              <td>{reportDate.toLocaleString("en-US", dateOptions)}</td>
+              <td>Report 1</td>
+              <td className="flex justify-center">
+                <Link href="">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="ml-auto w-5"
+                  >
+                    <path d="M12 1.5a.75.75 0 0 1 .75.75V7.5h-1.5V2.25A.75.75 0 0 1 12 1.5ZM11.25 7.5v5.69l-1.72-1.72a.75.75 0 0 0-1.06 1.06l3 3a.75.75 0 0 0 1.06 0l3-3a.75.75 0 1 0-1.06-1.06l-1.72 1.72V7.5h3.75a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h3.75Z" />
+                  </svg>
+                </Link>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </main>
       {/* custom paginator with a row selector */}
+      <footer></footer>
     </div>
   );
 };
