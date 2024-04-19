@@ -1,7 +1,12 @@
 import Link from "next/link";
 import React from "react";
 
-const Pagination = ({ nPages, currentPage, setCurrentPage , setRecoredsPerPage}) => {
+const Pagination = ({
+  nPages,
+  currentPage,
+  setCurrentPage,
+  setRecoredsPerPage,
+}) => {
   const pageNumbers = [...Array(nPages + 1).keys()].slice(1); // [...Array(nPages + 1).keys()].slice(1) generates an array of numbers from 1 to nPages.
   const goToNextPage = () => {
     if (currentPage !== nPages) setCurrentPage(currentPage + 1); // checking if the page is last or not if the page is last it does update the current page.
@@ -9,6 +14,7 @@ const Pagination = ({ nPages, currentPage, setCurrentPage , setRecoredsPerPage})
   const goToPrevPage = () => {
     if (currentPage !== 1) setCurrentPage(currentPage - 1);
   };
+
   return (
     <nav className="">
       <ul className="flex justify-around items-center pagination">
@@ -41,12 +47,16 @@ const Pagination = ({ nPages, currentPage, setCurrentPage , setRecoredsPerPage})
           </Link>
         </li>
         <li className="flex flex-col justify-center items-cente">
-            Rows Per Page
-          <select name="choice" className="border-gray-700 border" onChange={(e)=> setRecoredsPerPage(Number(e.target.value))}>
-            <option value="4" selected>4</option>
-            <option value="6">
-             6
+          Rows Per Page
+          <select
+            name="choice"
+            className="border-gray-700 border"
+            onChange={(e) => setRecoredsPerPage(Number(e.target.value))}
+          >
+            <option value="4" selected>
+              4
             </option>
+            <option value="6">6</option>
             <option value="8">8</option>
           </select>
         </li>
