@@ -1,6 +1,13 @@
+'use client'
 import Link from "next/link";
+import Pagination from "./Pagination";
+import { useState } from "react";
 
 const Datasheet = () => {
+    const [currentPage,setCurrentPage] = useState(1);
+    const [recordsPerPage,setRecoredsPerPage] = useState(10);
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
   const reports = [
     {
       Date: "11/29/2023",
@@ -403,49 +410,29 @@ const Datasheet = () => {
       file: "Nisl.png",
     },
   ];
+  const currentRecords = reports.slice(indexOfFirstRecord, 
+    indexOfLastRecord);
+    const nPages = Math.ceil(reports.length / recordsPerPage)
   return (
     <>
       <table className="table-fixed border-separate border-spacing-y-2.5 w-full">
         <TableHeadings />
-        <tbody>
-          {reports.map((report) => {
-            let fileDate = new Date(report.Date);
-            return (
-              <tr className="font-medium text-slate-700">
-                <td>
-                  <div className="file_date">
-                    {fileDate.toLocaleDateString()}
-                  </div>
-                  <div className="text-xs file_time">
-                    {fileDate.toLocaleTimeString()}
-                  </div>
-                </td>
-                <td>{report.file}</td>
-                <td className="flex justify-center">
-                  <Link href="">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      class="ml-auto w-5"
-                    >
-                      <path d="M12 1.5a.75.75 0 0 1 .75.75V7.5h-1.5V2.25A.75.75 0 0 1 12 1.5ZM11.25 7.5v5.69l-1.72-1.72a.75.75 0 0 0-1.06 1.06l3 3a.75.75 0 0 0 1.06 0l3-3a.75.75 0 1 0-1.06-1.06l-1.72 1.72V7.5h3.75a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h3.75Z" />
-                    </svg>
-                  </Link>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
+        <Records records={currentRecords}/>
       </table>
+      <Pagination
+                nPages={nPages}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+            />
     </>
   );
 };
 
 export default Datasheet;
 
-// This is the sub component for headings of the table.
 
+
+// This is the sub component for headings of the table.
 const TableHeadings = () => {
   return (
     <thead>
@@ -455,5 +442,42 @@ const TableHeadings = () => {
         <th className="w-24 text-center">Download</th>
       </tr>
     </thead>
+   
   );
 };
+
+
+// Records Component
+
+const Records = ({records})=>{
+    return   <tbody>
+    {records.map((record) => {
+      let fileDate = new Date(record.Date);
+      return (
+        <tr className="font-medium text-slate-700">
+          <td>
+            <div className="file_date">
+              {fileDate.toLocaleDateString()}
+            </div>
+            <div className="text-xs file_time">
+              {fileDate.toLocaleTimeString()}
+            </div>
+          </td>
+          <td>{record.file}</td>
+          <td className="flex justify-center">
+            <Link href="">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="ml-auto w-5"
+              >
+                <path d="M12 1.5a.75.75 0 0 1 .75.75V7.5h-1.5V2.25A.75.75 0 0 1 12 1.5ZM11.25 7.5v5.69l-1.72-1.72a.75.75 0 0 0-1.06 1.06l3 3a.75.75 0 0 0 1.06 0l3-3a.75.75 0 1 0-1.06-1.06l-1.72 1.72V7.5h3.75a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h3.75Z" />
+              </svg>
+            </Link>
+          </td>
+        </tr>
+      );
+    })}
+  </tbody>
+}
