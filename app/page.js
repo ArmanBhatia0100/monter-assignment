@@ -1,4 +1,4 @@
-import Dialogbox from "./dialogbox";
+import Dialogbox from "./Dialogbox";
 
 export default function Home() {
   return (

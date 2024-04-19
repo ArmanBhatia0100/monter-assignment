@@ -1,4 +1,4 @@
-export default reports = [{
+const reports = [{
     "Date": "5/24/2023",
     "File": "UtAtDolor.xls"
   }, {
@@ -299,3 +299,5 @@ export default reports = [{
     "Date": "3/3/2024",
     "File": "Vestibulum.ppt"
   }]
+
+  export default reports;

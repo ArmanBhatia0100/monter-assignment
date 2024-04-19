@@ -48,7 +48,7 @@ const Records = ({records})=>{
               {fileDate.toLocaleTimeString()}
             </div>
           </td>
-          <td>{record.file}</td>
+          <td>{record.File}</td>
           <td className="flex justify-center">
             <Link href="">
               <svg
